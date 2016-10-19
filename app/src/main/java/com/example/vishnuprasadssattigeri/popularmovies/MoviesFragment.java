@@ -3,7 +3,9 @@ package com.example.vishnuprasadssattigeri.popularmovies;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.*;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,9 +26,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.text.*;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by vishnuprasadssattigeri on 10/9/16.
@@ -85,7 +89,7 @@ public class MoviesFragment extends Fragment {
                         getString(R.string.pref_sort_key),
                         getString(R.string.pref_sort_poularity));
 
-                final String apiId = "7c3172e0e20ee97f72f004fae185470a";
+                String apiId = null;
                 final String FORECAST_BASE_URL = "https://api.themoviedb.org/3/discover/movie?";
                 final String PRIMARY_RELEASE_YEAR = "primary_release_year";
                 final String year = "2016";
@@ -93,6 +97,15 @@ public class MoviesFragment extends Fragment {
                 final String SORT_BY = "sort_by";
                 final String VOTE_COUNT = "vote_count.gte";
 
+                try {
+                    ApplicationInfo ai = getContext().getPackageManager().getApplicationInfo(getActivity().getPackageName(), PackageManager.GET_META_DATA);
+                    Bundle bundle = ai.metaData;
+                    apiId = bundle.getString("my_movie_api_key");
+                } catch (PackageManager.NameNotFoundException e) {
+                    Log.e(TAG, "Failed to load meta-data, NameNotFound: " + e.getMessage());
+                } catch (NullPointerException e) {
+                    Log.e(TAG, "Failed to load meta-data, NullPointer: " + e.getMessage());
+                }
 
                 Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
                         .appendQueryParameter(PRIMARY_RELEASE_YEAR, year)

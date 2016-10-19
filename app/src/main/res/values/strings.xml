@@ -20,6 +20,16 @@
     <string name="release_date">Release Date</string>
     <string name="rating">Rating</string>
 
-    <!-- Example General settings -->
+    <string name="sort">sort</string>
+    <string name="sort_by">Sort By</string>
+
+    <!-- Styles -->
+    <string name="column_width">columnWidth</string>
+    <string name="match_parent">match_parent</string>
+    <string name="fill_parent">fill_parent</string>
+    <string name="auto_fit">auto_fit</string>
+    <string name="wrap_content">wrap_content</string>
+    <string name="center">center</string>
+    <string name="center_crop">centerCrop</string>
 
 </resources>
