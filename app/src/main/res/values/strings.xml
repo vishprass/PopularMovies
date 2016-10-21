@@ -13,8 +13,8 @@
 
     <string name="pref_sort_label_poularity">Popularity</string>
     <string name="pref_sort_label_rating">Rating</string>
-    <string name="pref_sort_poularity">popularity.desc</string>
-    <string name="pref_sort_rating">vote_average.desc</string>
+    <string name="pref_sort_poularity">popular</string>
+    <string name="pref_sort_rating">top_rated</string>
 
     <string name="plot">Plot</string>
     <string name="release_date">Release Date</string>
